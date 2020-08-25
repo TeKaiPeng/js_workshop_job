@@ -7,10 +7,15 @@ document.addEventListener('DOMContentLoader', function (){
     burger.classList.toggle('.is-acive')
     menu.classList.toggle('.is-acive')
   }) 
-  
+
   form.addEventListener('submit', function (e){
     e.preventDefault();
-    fetch(`https://still-spire-37210.herokuapp.com/positions.json?utf8=✓&description=${form.Element(0)}&location=${form.Element(1)}`)
+    if (form.Element[2].checked)
+    fetch(`https://still-spire-37210.herokuapp.com/positions.json?utf8=✓&description=${form.elements[0]}&location=${form.elements[1]}&full_time=on`)
+    .then(response => response.json())
+    .then(posts => console.log(posts))
+    else 
+    fetch(`https://still-spire-37210.herokuapp.com/positions.json?utf8=✓&description=${form.elements[0]}&location=${form.elements[1]},  `)
     .then(response => response.json())
     .then(posts => console.log(posts))
   })
