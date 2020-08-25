@@ -1,15 +1,19 @@
 document.addEventListener('DOMContentLoader', function (){
   const burger = document.getElementById('#navbar-burger');
   const menu = document.getElementById('#navbar-menu');
+  const form = document.form['#search-job']
 
   burger.addEventListener('click', function (){
     burger.classList.toggle('.is-acive')
     menu.classList.toggle('.is-acive')
-
-  ])  
-
-
+  }) 
   
+  form.addEventListener('submit', function (e){
+    e.preventDefault();
+    fetch(`https://still-spire-37210.herokuapp.com/positions.json?utf8=✓&description=${form.Element(0)}&location=${form.Element(1)}`)
+    .then(response => response.json())
+    .then(posts => console.log(posts))
+  })
 })
 
 
@@ -20,7 +24,6 @@ document.addEventListener('DOMContentLoader', function (){
 
 
 
-// fetch('https://still-spire-37210.herokuapp.com/positions.json?markdown=true')
 // .then(response => response.json())
 // .then(posts => {
 //   const post = posts[0];
